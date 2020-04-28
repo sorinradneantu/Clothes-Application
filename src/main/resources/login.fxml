@@ -24,7 +24,7 @@
                   <Font size="32.0" />
                </font>
             </Label>
-            <Button layoutX="168.0" layoutY="378.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="126.0" text="Register" textFill="#b22020">
+            <Button onAction="#openRegister" layoutX="168.0" layoutY="378.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="126.0" text="Register" textFill="#b22020">
                <font>
                   <Font size="21.0" />
                </font>
