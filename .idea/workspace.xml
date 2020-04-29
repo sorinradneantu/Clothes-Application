@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="d642c24e-0c7b-476b-bc0f-25ea96800a79" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/login.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,26 +125,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588097544747" />
-    <state width="1493" height="225" key="GridCell.Tab.0.bottom" timestamp="1588170942991">
+    <state width="1493" height="2" key="GridCell.Tab.0.bottom" timestamp="1588183251546">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="225" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588170942991" />
-    <state width="1493" height="225" key="GridCell.Tab.0.center" timestamp="1588170942991">
+    <state width="1493" height="2" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588183251546" />
+    <state width="1493" height="2" key="GridCell.Tab.0.center" timestamp="1588183251545">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="225" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588170942991" />
-    <state width="1493" height="225" key="GridCell.Tab.0.left" timestamp="1588170942991">
+    <state width="1493" height="2" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588183251545" />
+    <state width="1493" height="2" key="GridCell.Tab.0.left" timestamp="1588183251545">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="225" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588170942991" />
-    <state width="1493" height="225" key="GridCell.Tab.0.right" timestamp="1588170942991">
+    <state width="1493" height="2" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588183251545" />
+    <state width="1493" height="2" key="GridCell.Tab.0.right" timestamp="1588183251545">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="225" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588170942991" />
-    <state x="0" y="67" key="Maven.ArtifactSearchDialog" timestamp="1588091887604">
+    <state width="1493" height="2" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588183251545" />
+    <state x="0" y="67" key="Maven.ArtifactSearchDialog" timestamp="1588182773459">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="0" y="67" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1588091887604" />
+    <state x="0" y="67" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1588182773459" />
     <state x="498" y="0" key="SettingsEditor" timestamp="1588152169879">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -154,10 +157,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1588097416105" />
-    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588172635254">
+    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588172980363">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1588172635254" />
+    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1588172980363" />
     <state x="499" y="168" width="538" height="495" key="extract.method.dialog" timestamp="1588115383223">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -166,5 +169,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="209" y="108" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1588080503725" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1588176407126">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1588176407126" />
   </component>
 </project>

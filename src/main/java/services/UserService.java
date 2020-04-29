@@ -16,11 +16,16 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Objects;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+
+import javax.swing.*;
 
 public class UserService {
 
     private static List<User> users;
     private static final Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
+    private static JSONArray jrr=new JSONArray();
 
     public static void loadUsersFromFile() throws IOException {
 
@@ -34,12 +39,26 @@ public class UserService {
 
         users = objectMapper.readValue(USERS_PATH.toFile(), new TypeReference<List<User>>() {
         });
+        for(User user : users)
+        {
+            JSONObject newObj = new JSONObject();
+            newObj.put("Username",user.getUsername());
+            newObj.put("Password",user.getPassword());
+            newObj.put("Role",user.getRole());
+            jrr.add(newObj);
+        }
     }
 
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
         users.add(new User(username, encodePassword(username, password), role));
         persistUsers();
+
+        JSONObject newObj = new JSONObject();
+        newObj.put("Username",username);
+        newObj.put("Password",password);
+        newObj.put("Role",role);
+        jrr.add(newObj);
     }
 
     private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException {
@@ -58,7 +77,7 @@ public class UserService {
         }
     }
 
-    private static String encodePassword(String salt, String password) {
+    public static String encodePassword(String salt, String password) {
         MessageDigest md = getMessageDigest();
         md.update(salt.getBytes(StandardCharsets.UTF_8));
 
@@ -78,6 +97,25 @@ public class UserService {
         }
         return md;
     }
+    public static void checkUsers(String username,String password,String role) {
+        JSONObject obj = new JSONObject();
+        obj.put("Username", username);
+        obj.put("Password", encodePassword(username, password));
+        obj.put("Role", role);
 
+        int i;
+        for (i = 0; i < jrr.size(); i++) {
+            if (obj.equals(jrr.get(i))) {
+                if (obj.get("Role").equals("Admin"))
+                    JOptionPane.showMessageDialog(null, "Logged as ADMIN");
+                if (obj.get("Role").equals("Customer"))
+                    JOptionPane.showMessageDialog(null, "Logged as CUSTOMER");
+                if (obj.get("Role").equals("Store manager"))
+                    JOptionPane.showMessageDialog(null, "Logged as STORE MANAGER");
+            } else if (i == jrr.size() - 1) {
+                JOptionPane.showMessageDialog(null, "Incorrect user or password !");
+            }
+        }
+    }
 
 }
