@@ -8,7 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Clothes-Application" />
         <module name="Clothes_Application" />
-        <module name="Clothes-Application" />
       </profile>
     </annotationProcessing>
   </component>
