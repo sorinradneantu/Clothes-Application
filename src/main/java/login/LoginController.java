@@ -34,4 +34,8 @@ public class LoginController {
         window.setTitle("Register");
         window.show();
     }
+    public void login() throws Exception {
+
+        UserService.checkUsers(usernameInput.getText(),passwordInput.getText(),(String)roleInput.getValue());
+    }
 }

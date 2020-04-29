@@ -59,7 +59,7 @@
       <PasswordField fx:id="passwordInput" layoutX="561.0" layoutY="263.0" />
       <TextField fx:id="usernameInput" layoutX="561.0" layoutY="211.0" />
       <ChoiceBox fx:id="roleInput" layoutX="560.0" layoutY="319.0" prefWidth="150.0" />
-      <Button layoutX="579.0" layoutY="385.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="102.0" text="Log in" textFill="#cd1616">
+      <Button onAction="#login" layoutX="579.0" layoutY="385.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="102.0" text="Log in" textFill="#cd1616">
          <font>
             <Font size="18.0" />
          </font>
