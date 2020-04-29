@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="400.0" prefWidth="348.0" style="-fx-background-color: #993399;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="register.RegisterController">
    <children>
@@ -25,12 +25,13 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="130.0" layoutY="294.0" mnemonicParsing="false" text="Register" textFill="#dd0e0e">
+      <Button layoutX="130.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleRegisterAction" text="Register" textFill="#dd0e0e">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField layoutX="107.0" layoutY="148.0" promptText="example:user1234" />
-      <PasswordField layoutX="107.0" layoutY="214.0" promptText="A-Z,0-9 and special chars" />
+      <TextField fx:id="usernameInput" layoutX="107.0" layoutY="148.0" promptText="example:user1234" />
+      <PasswordField fx:id="passwordInput" layoutX="107.0" layoutY="214.0" promptText="A-Z,0-9 and special chars" />
+      <Text fx:id="registerMessage" layoutX="147.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" />
    </children>
 </AnchorPane>

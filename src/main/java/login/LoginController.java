@@ -8,6 +8,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
+import services.UserService;
 
 public class LoginController {
     @FXML
@@ -23,6 +24,7 @@ public class LoginController {
     }
 
     public void openRegister() throws Exception {
+
         Parent registerWindow = FXMLLoader.load(getClass().getResource("/register.fxml"));
         Scene registerScene = new Scene(registerWindow);
 
