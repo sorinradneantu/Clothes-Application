@@ -1,5 +1,6 @@
 package services;
 
+import admin.AdminController;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -85,7 +86,7 @@ public class UserService {
         }
         return md;
     }
-    public static void checkUsers(String username,String password,String role) {
+    public static void checkUsers(String username,String password,String role) throws IOException {
         int i = 0;
         for (User user : users) {
             if (!Objects.equals(username, user.getUsername()))
@@ -101,7 +102,9 @@ public class UserService {
                             if (Objects.equals(role, "Customer")) {
                                 JOptionPane.showMessageDialog(null, "Logged as CUSTOMER");
                             } else if (Objects.equals(role, "Admin")) {
-                                JOptionPane.showMessageDialog(null, "Logged as ADMIN");
+                                {
+                                    AdminController.openAdminPanel();
+                                }
                             } else if (Objects.equals(role, "Store")) {
                                 JOptionPane.showMessageDialog(null, "Logged as STORE");
                             } else {
