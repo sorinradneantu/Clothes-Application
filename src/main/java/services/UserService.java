@@ -25,7 +25,6 @@ public class UserService {
 
     private static List<User> users;
     private static final Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
-    private static JSONArray jrr=new JSONArray();
 
     public static void loadUsersFromFile() throws IOException {
 
@@ -33,32 +32,17 @@ public class UserService {
             FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), USERS_PATH.toFile());
         }
 
-
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
 
         users = objectMapper.readValue(USERS_PATH.toFile(), new TypeReference<List<User>>() {
         });
-        for(User user : users)
-        {
-            JSONObject newObj = new JSONObject();
-            newObj.put("Username",user.getUsername());
-            newObj.put("Password",user.getPassword());
-            newObj.put("Role",user.getRole());
-            jrr.add(newObj);
-        }
     }
 
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
         users.add(new User(username, encodePassword(username, password), role));
         persistUsers();
-
-        JSONObject newObj = new JSONObject();
-        newObj.put("Username",username);
-        newObj.put("Password",password);
-        newObj.put("Role",role);
-        jrr.add(newObj);
     }
 
     private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException {
@@ -98,23 +82,36 @@ public class UserService {
         return md;
     }
     public static void checkUsers(String username,String password,String role) {
-        JSONObject obj = new JSONObject();
-        obj.put("Username", username);
-        obj.put("Password", encodePassword(username, password));
-        obj.put("Role", role);
-
-        int i;
-        for (i = 0; i < jrr.size(); i++) {
-            if (obj.equals(jrr.get(i))) {
-                if (obj.get("Role").equals("Admin"))
-                    JOptionPane.showMessageDialog(null, "Logged as ADMIN");
-                if (obj.get("Role").equals("Customer"))
-                    JOptionPane.showMessageDialog(null, "Logged as CUSTOMER");
-                if (obj.get("Role").equals("Store manager"))
-                    JOptionPane.showMessageDialog(null, "Logged as STORE MANAGER");
-            } else if (i == jrr.size() - 1) {
-                JOptionPane.showMessageDialog(null, "Incorrect user or password !");
+        int i = 0;
+        for (User user : users) {
+            if (!Objects.equals(username, user.getUsername()))
+                i++;
+        }
+        if (i == users.size()) {
+            JOptionPane.showMessageDialog(null, "Wrong credentials");
+        } else {
+            for (User user : users) {
+                if (Objects.equals(username, user.getUsername())) {
+                    if (Objects.equals(user.getPassword(), encodePassword(username, password))) {
+                        if (Objects.equals(role, user.getRole())) {
+                            if (Objects.equals(role, "Customer")) {
+                                JOptionPane.showMessageDialog(null, "Logged as CUSTOMER");
+                            } else if (Objects.equals(role, "Admin")) {
+                                JOptionPane.showMessageDialog(null, "Logged as ADMIN");
+                            } else if (Objects.equals(role, "Store")) {
+                                JOptionPane.showMessageDialog(null, "Logged as STORE");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Wrong credentials");
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Wrong credentials");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Wrong credentials");
+                    }
+                }
             }
+
         }
     }
 
