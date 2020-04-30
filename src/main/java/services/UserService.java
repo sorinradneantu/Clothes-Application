@@ -26,7 +26,7 @@ public class UserService {
     private static List<User> users;
     private static final Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
 
-    public static void loadUsersFromFile() throws IOException {
+    public static void loadUsersFromFile() throws IOException,UsernameAlreadyExistsException {
 
         if (!Files.exists(USERS_PATH)) {
             FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), USERS_PATH.toFile());
@@ -37,6 +37,10 @@ public class UserService {
 
         users = objectMapper.readValue(USERS_PATH.toFile(), new TypeReference<List<User>>() {
         });
+        if(users.size()==0)
+        {
+            UserService.addUser("Admin","Admin1234","Admin");
+        }
     }
 
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
