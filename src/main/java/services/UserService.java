@@ -1,5 +1,6 @@
 package services;
 
+import admin.AdminController;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,7 +27,7 @@ public class UserService {
     private static List<User> users;
     private static final Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
 
-    public static void loadUsersFromFile() throws IOException {
+    public static void loadUsersFromFile() throws IOException,UsernameAlreadyExistsException {
 
         if (!Files.exists(USERS_PATH)) {
             FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), USERS_PATH.toFile());
@@ -37,6 +38,10 @@ public class UserService {
 
         users = objectMapper.readValue(USERS_PATH.toFile(), new TypeReference<List<User>>() {
         });
+        if(users.size()==0)
+        {
+            UserService.addUser("Admin","Admin1234","Admin");
+        }
     }
 
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
@@ -81,7 +86,7 @@ public class UserService {
         }
         return md;
     }
-    public static void checkUsers(String username,String password,String role) {
+    public static void checkUsers(String username,String password,String role) throws IOException {
         int i = 0;
         for (User user : users) {
             if (!Objects.equals(username, user.getUsername()))
@@ -97,7 +102,9 @@ public class UserService {
                             if (Objects.equals(role, "Customer")) {
                                 JOptionPane.showMessageDialog(null, "Logged as CUSTOMER");
                             } else if (Objects.equals(role, "Admin")) {
-                                JOptionPane.showMessageDialog(null, "Logged as ADMIN");
+                                {
+                                    AdminController.openAdminPanel();
+                                }
                             } else if (Objects.equals(role, "Store")) {
                                 JOptionPane.showMessageDialog(null, "Logged as STORE");
                             } else {
