@@ -4,6 +4,7 @@ import admin.AdminController;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import customer.CustomerController;
 import exceptions.CouldNotWriteUsersException;
 import exceptions.UsernameAlreadyExistsException;
 import model.User;
@@ -129,7 +130,7 @@ public class UserService {
                     if (Objects.equals(user.getPassword(), encodePassword(username, password))) {
                         if (Objects.equals(role, user.getRole())) {
                             if (Objects.equals(role, "Customer")) {
-                                JOptionPane.showMessageDialog(null, "Logged as CUSTOMER");
+                                CustomerController.openCustomerPanel();
                             } else if (Objects.equals(role, "Admin")) {
                                 {
                                     AdminController.openAdminPanel();
