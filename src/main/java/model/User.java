@@ -1,5 +1,9 @@
 package model;
 
+import services.FileSystemService;
+
+import java.nio.file.Path;
+
 public class User {
     private String username;
     private String password;
@@ -13,7 +17,6 @@ public class User {
         this.password=password;
         this.role=role;
     }
-
     public String getPassword() {
         return password;
     }

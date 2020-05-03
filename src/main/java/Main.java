@@ -8,7 +8,7 @@ import services.UserService;
 
 import java.nio.file.Path;
 
-public class Main extends Application {
+public class  Main extends Application {
     private static final Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
 
     Stage window;

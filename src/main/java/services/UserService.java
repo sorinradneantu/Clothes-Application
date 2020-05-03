@@ -8,6 +8,9 @@ import exceptions.CouldNotWriteUsersException;
 import exceptions.UsernameAlreadyExistsException;
 import model.User;
 import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -19,6 +22,7 @@ import java.util.List;
 import java.util.Objects;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
+import store.StoreController;
 
 import javax.swing.*;
 
@@ -43,11 +47,36 @@ public class UserService {
             UserService.addUser("Admin","Admin1234","Admin");
         }
     }
+    public static List<User> getUsers(){
+        return users;
+    }
 
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
         users.add(new User(username, encodePassword(username, password), role));
         persistUsers();
+        if(Objects.equals(role,"Store")) {
+            Path STORE_PATH = FileSystemService.getPathToFile("config", username + ".json");
+            try {
+                File myObj = new File(String.valueOf(STORE_PATH));
+                if (myObj.createNewFile()) {
+                    System.out.println("File created: " + myObj.getName());
+                } else {
+                    System.out.println("File already exists.");
+                }
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+            try {
+                FileWriter fwrite = new FileWriter(String.valueOf(STORE_PATH));
+                fwrite.write("[]");
+                fwrite.close();
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+        }
     }
 
     private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException {
@@ -77,7 +106,7 @@ public class UserService {
                 .replace("\"", ""); //to be able to save in JSON format
     }
 
-    private static MessageDigest getMessageDigest() {
+    public static MessageDigest getMessageDigest() {
         MessageDigest md;
         try {
             md = MessageDigest.getInstance("SHA-512");
@@ -106,7 +135,8 @@ public class UserService {
                                     AdminController.openAdminPanel();
                                 }
                             } else if (Objects.equals(role, "Store")) {
-                                JOptionPane.showMessageDialog(null, "Logged as STORE");
+                                Path STORE_PATH = FileSystemService.getPathToFile("config", username + ".json");
+                                StoreController.openStorePanel(STORE_PATH);
                             } else {
                                 JOptionPane.showMessageDialog(null, "Wrong credentials");
                             }
