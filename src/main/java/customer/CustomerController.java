@@ -73,10 +73,16 @@ public class CustomerController {
                         viewButton.setOnAction(event -> {
 
                             User u = getTableView().getItems().get(getIndex());
+                            Path STORE_PATH = FileSystemService.getPathToFile("config", u.getUsername() + ".json");
 
-                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                            alert.setContentText("You have clicked \n "+u.getUsername());
-                            alert.show();
+                            try {
+                                ViewProductController.openViewProductsPanel(STORE_PATH);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            //Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            //alert.setContentText("You have clicked \n "+u.getUsername());
+                            //alert.show();
                         });
 
                         setGraphic(viewButton);
