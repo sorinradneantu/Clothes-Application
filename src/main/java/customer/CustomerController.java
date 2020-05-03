@@ -1,5 +1,7 @@
 package customer;
 
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -8,16 +10,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import model.Product;
 import model.User;
 import services.FileSystemService;
 import services.UserService;
+
 import java.util.List;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -34,7 +35,7 @@ public class CustomerController {
    @FXML
    private TableColumn<User,String> username;
    @FXML
-   private TableColumn<User,Button> view_products;
+   private TableColumn viewproducts;
    @FXML
    private TextField filterField;
 
@@ -50,8 +51,45 @@ public class CustomerController {
     }
 
     public void initialize(){
-        username.setCellValueFactory(new PropertyValueFactory<User,String>("Username"));
-        view_products.setCellValueFactory(new PropertyValueFactory<User,Button>("View Products"));
+        username.setCellValueFactory(new PropertyValueFactory<>("username"));
+        viewproducts.setSortable(false);
+
+        Callback<TableColumn<User,String>,TableCell<User,String>> cellFactory = (param) -> {
+
+            final TableCell<User,String> cell = new TableCell<User,String>(){
+
+                @Override
+                public void updateItem(String item,boolean empty){
+                    super.updateItem(item,empty);
+
+                    if(empty)
+                    {
+                        setGraphic(null);
+                        setText(null);
+                    }
+                    else
+                    {
+                        final Button viewButton = new Button("View");
+                        viewButton.setOnAction(event -> {
+
+                            User u = getTableView().getItems().get(getIndex());
+
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setContentText("You have clicked \n "+u.getUsername());
+                            alert.show();
+                        });
+
+                        setGraphic(viewButton);
+                        setText(null);
+                    }
+
+                };
+
+            };
+            return cell;
+        };
+
+        viewproducts.setCellFactory(cellFactory);
 
         for(User user : users)
         {
@@ -81,6 +119,8 @@ public class CustomerController {
 
         tableview.setItems(sortedData);
     }
+
+
 
 
 
