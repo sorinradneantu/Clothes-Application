@@ -1,8 +1,8 @@
 package model;
 
-import services.FileSystemService;
 
-import java.nio.file.Path;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.scene.control.Button;
 
 public class User {
     private String username;
@@ -40,6 +40,8 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,4 +70,6 @@ public class User {
                 ", role='" + role + '\'' +
                 '}';
     }
+
+
 }

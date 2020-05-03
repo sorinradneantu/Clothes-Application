@@ -14,7 +14,7 @@
       <TableView fx:id="tableview" layoutX="29.0" layoutY="128.0" prefHeight="452.0" prefWidth="391.0">
         <columns>
           <TableColumn fx:id="username" prefWidth="198.39995765686035" text="Name" />
-          <TableColumn fx:id="view_products" prefWidth="192.0" text="View products" />
+          <TableColumn fx:id="viewproducts" prefWidth="192.0" text="Action" />
         </columns>
       </TableView>
       <Label layoutX="29.0" layoutY="14.0" prefHeight="35.0" prefWidth="350.0" text="Select a store and start shopping !">
