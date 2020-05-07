@@ -126,8 +126,4 @@ public class CustomerController {
         tableview.setItems(sortedData);
     }
 
-
-
-
-
 }
