@@ -3,7 +3,6 @@ package services;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import exceptions.CouldNotWriteProductsException;
 import exceptions.CouldNotWriteUsersException;
 import exceptions.ProductAlreadyExistsException;
