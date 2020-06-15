@@ -26,10 +26,11 @@
       </Label>
       <Button layoutX="183.0" layoutY="113.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="123.0" text="View orders" textFill="#cd1616" />
       <AnchorPane layoutX="-5.0" layoutY="-6.0" prefHeight="14.0" prefWidth="726.0" style="-fx-background-color: #993399;" />
-      <TextField fx:id="filterField" layoutX="342.0" layoutY="113.0" prefHeight="51.0" prefWidth="207.0" promptText="Search...">
+      <TextField fx:id="filterField" layoutX="480.0" layoutY="112.0" prefHeight="51.0" prefWidth="207.0" promptText="Search...">
          <font>
             <Font size="24.0" />
          </font>
       </TextField>
+      <Button layoutX="332.0" layoutY="113.0" mnemonicParsing="false" onAction="#delProd" prefHeight="50.0" prefWidth="123.0" text="Delete" textFill="#cd1616" />
    </children>
 </AnchorPane>

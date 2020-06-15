@@ -82,6 +82,9 @@ public class StoreController {
 
         tableview.setItems(sortedData);
     }
+    public void delProd() throws IOException{
+        DeleteProductController.deleteProdPanel();
+    }
     public void addProd() throws IOException {
         AddProuctController.openAddProdPanel();
 
