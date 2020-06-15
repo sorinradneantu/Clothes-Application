@@ -1,6 +1,6 @@
 package model;
 
-import java.awt.*;
+
 import java.util.Objects;
 
 public class Product {

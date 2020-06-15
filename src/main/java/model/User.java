@@ -1,8 +1,7 @@
 package model;
 
 
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.scene.control.Button;
+
 
 public class User {
     private String username;
