@@ -1,6 +1,5 @@
 package store;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import exceptions.ProductAlreadyExistsException;
 import exceptions.ProductDoesNotExist;
 import javafx.fxml.FXML;
@@ -13,7 +12,6 @@ import javafx.stage.Stage;
 import services.StoreService;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 
 public class DeleteProductController {

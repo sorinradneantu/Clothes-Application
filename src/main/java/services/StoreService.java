@@ -6,13 +6,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import exceptions.*;
 import model.Product;
 import model.User;
-import org.apache.commons.io.FileUtils;
 
 import javax.swing.*;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.List;

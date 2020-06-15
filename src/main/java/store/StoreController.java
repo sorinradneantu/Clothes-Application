@@ -5,7 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,7 +21,6 @@ import services.StoreService;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Observable;
 
 
 public class StoreController {
