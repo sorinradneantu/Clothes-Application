@@ -87,5 +87,8 @@ public class StoreController {
         AddProuctController.openAddProdPanel();
 
     }
+    public void editProd()throws IOException{
+        EditProductController.EditProdPanel();
+    }
 
 }
