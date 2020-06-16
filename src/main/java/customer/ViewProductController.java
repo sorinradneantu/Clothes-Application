@@ -9,12 +9,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import model.Product;
 import services.StoreService;
 
@@ -33,7 +31,7 @@ public class ViewProductController {
     @FXML
     TableColumn<Product, ChoiceBox> size;
     @FXML
-    TableColumn<Product,ChoiceBox> quantity;
+    private TableColumn quantity;
     @FXML
     TextField filterField;
 
@@ -62,6 +60,44 @@ public class ViewProductController {
         for(Product prod:products){
             prodList.add(prod);
         }
+
+
+        Callback<TableColumn<Product,String>, TableCell<Product,String>> cellFactory=(param) -> {
+            final TableCell<Product,String> cell = new TableCell<Product,String>(){
+
+                @Override
+                public void updateItem(String item,boolean empty){
+                    super.updateItem(item,empty);
+
+                    if(empty)
+                    {
+                        setGraphic(null);
+                        setText(null);
+                    }else
+                    {
+                        final TextField selectQuantity = new TextField("0");
+
+                        selectQuantity.setOnAction(event ->{
+
+                            Product p = getTableView().getItems().get(getIndex());
+                        });
+
+                        setGraphic(selectQuantity);
+                        setText(null);
+
+                    }
+                }
+            };
+
+            return cell;
+
+        };
+
+        quantity.setCellFactory(cellFactory);
+
+
+
+
 
         FilteredList<Product> filteredData = new FilteredList<>(prodList, b -> true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
