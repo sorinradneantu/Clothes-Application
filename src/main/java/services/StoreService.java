@@ -3,6 +3,7 @@ package services;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.webkit.dom.DocumentImpl;
 import exceptions.*;
 import model.Product;
 import model.User;
@@ -104,7 +105,29 @@ public class StoreService {
             }
         }
     }
-
+    public static void editData(String curentNameInput,String newNameInput,String  newPriceInput,String usernameInput, String passwordInput) throws IOException, ProductAlreadyExistsException, ProductDoesNotExist {
+        Path pth;
+        int i = 0;
+        for (User user : users) {
+            if (!Objects.equals(usernameInput, user.getUsername()))
+                i++;
+        }
+        if(i==users.size()){
+            JOptionPane.showMessageDialog(null, "Failed security test");
+        }else{
+            for(User user : users){
+                if (Objects.equals(usernameInput, user.getUsername())){
+                    if (Objects.equals(user.getPassword(), UserService.encodePassword(usernameInput, passwordInput))){
+                        pth = FileSystemService.getPathToFile("config", usernameInput + ".json");
+                       deleteData(curentNameInput,usernameInput,passwordInput);
+                       addData(newNameInput,newPriceInput,usernameInput,passwordInput);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Failed security test");
+                    }
+                }
+            }
+        }
+    }
     private static void checkProductDoesNotAlreadyExist(String name,Path pth) throws ProductAlreadyExistsException,IOException {
         List<Product> products;
         products=loadDataFromFile(pth);
