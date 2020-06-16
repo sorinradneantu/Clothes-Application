@@ -23,17 +23,17 @@ import java.util.List;
 public class ViewProductController {
 
     @FXML
-    TableView<Product> tableview;
+    private TableView<Product> tableview;
     @FXML
-    TableColumn<Product,String> name;
+    private TableColumn<Product,String> name;
     @FXML
-    TableColumn<Product,Double> price;
+    private TableColumn<Product,Double> price;
     @FXML
-    TableColumn<Product, ChoiceBox> size;
+    private TableColumn size;
     @FXML
     private TableColumn quantity;
     @FXML
-    TextField filterField;
+    private TextField filterField;
 
 
     private final ObservableList<Product> prodList= FXCollections.observableArrayList();
@@ -94,6 +94,44 @@ public class ViewProductController {
         };
 
         quantity.setCellFactory(cellFactory);
+
+        Callback<TableColumn<Product,String>,TableCell<Product,String>> cellFactory2=(param) -> {
+            final TableCell<Product,String> cell2 = new TableCell<Product,String>(){
+
+                @Override
+                public void updateItem(String item,boolean empty){
+                    super.updateItem(item,empty);
+
+                    if(empty)
+                    {
+                        setGraphic(null);
+                        setText(null);
+                    }else
+                    {
+                        final ChoiceBox selectSize = new ChoiceBox();
+                        selectSize.getItems().add("S");
+                        selectSize.getItems().add("M");
+                        selectSize.getItems().add("L");
+                        selectSize.getItems().add("XL");
+
+
+                        selectSize.setOnAction(event ->{
+
+                            Product p = getTableView().getItems().get(getIndex());
+                        });
+
+                        setGraphic(selectSize);
+                        setText(null);
+
+                    }
+                }
+            };
+
+            return cell2;
+
+        };
+
+        size.setCellFactory(cellFactory2);
 
 
 
