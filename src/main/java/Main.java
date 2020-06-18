@@ -31,5 +31,7 @@ public class  Main extends Application {
         window.setScene(loginScene);
         window.setTitle("Login");
         window.show();
+
+
     }
 }
