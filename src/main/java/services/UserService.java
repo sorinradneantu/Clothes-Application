@@ -5,8 +5,11 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import customer.CustomerController;
+import exceptions.CouldNotWriteOrderException;
 import exceptions.CouldNotWriteUsersException;
 import exceptions.UsernameAlreadyExistsException;
+import model.Order;
+import model.ProductToOrder;
 import model.User;
 import org.apache.commons.io.FileUtils;
 
@@ -18,6 +21,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import store.StoreController;
@@ -26,17 +30,29 @@ import javax.swing.*;
 
 public class UserService {
 
+    private static List<Order> orders;
     private static List<User> users;
     private static final Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
+    private static final Path ORDERS_PATH=FileSystemService.getPathToFile("config","orders.json");
 
     public static void loadUsersFromFile() throws IOException,UsernameAlreadyExistsException {
 
         if (!Files.exists(USERS_PATH)) {
             FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), USERS_PATH.toFile());
         }
+        if (!Files.exists(ORDERS_PATH)) {
+            FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("orders.json"),ORDERS_PATH.toFile());
+        }
+
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
+
+        ObjectMapper objMap=new ObjectMapper();
+        objMap.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
+
+        orders=objMap.readValue(ORDERS_PATH.toFile(),new TypeReference<List<Order>>(){
+        });
 
         users = objectMapper.readValue(USERS_PATH.toFile(), new TypeReference<List<User>>() {
         });
@@ -45,9 +61,26 @@ public class UserService {
             UserService.addUser("Admin","Admin1234","Admin");
         }
     }
+
+
+
+    public static void addOrder(String shopname, String customername, ArrayList<ProductToOrder> productsOrd) {
+        orders.add(new Order(shopname, customername, productsOrd));
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(ORDERS_PATH.toFile(), orders);
+        } catch (IOException e) {
+            throw new CouldNotWriteOrderException();
+        }
+
+
+
+
+    }
     public static List<User> getUsers(){
         return users;
     }
+    public static List<Order> getOrders() { return orders;}
 
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);

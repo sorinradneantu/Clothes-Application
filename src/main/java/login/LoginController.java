@@ -19,8 +19,8 @@ public class LoginController {
     private ChoiceBox roleInput;
 
     public void initialize() {
-        roleInput.getItems().setAll("Customer", "Store", "Admin");
 
+        roleInput.getItems().setAll("Customer", "Store", "Admin");
     }
 
     public void openRegister() throws Exception {
@@ -35,7 +35,6 @@ public class LoginController {
         window.show();
     }
     public void login() throws Exception {
-
         UserService.checkUsers(usernameInput.getText(),passwordInput.getText(),(String)roleInput.getValue());
     }
 }
