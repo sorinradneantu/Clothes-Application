@@ -10,24 +10,29 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="369.0" prefWidth="345.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="store.DeleteProductController">
    <children>
       <AnchorPane layoutY="-3.0" prefHeight="377.0" prefWidth="10.0" style="-fx-background-color: #993399;" />
-      <Text layoutX="20.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product name:" wrappingWidth="94.13665771484375">
+      <Text layoutX="20.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product name:" wrappingWidth="94.13665771484375">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="productInput" layoutX="134.0" layoutY="99.0" />
-      <Button onAction="#deleteProd" layoutX="137.0" layoutY="286.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="71.0" text="Delete" textFill="#cd1616" />
-      <Text layoutX="35.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Store name:">
+      <TextField fx:id="productInput" layoutX="134.0" layoutY="68.0" />
+      <Button layoutX="137.0" layoutY="291.0" mnemonicParsing="false" onAction="#deleteProd" prefHeight="42.0" prefWidth="71.0" text="Delete" textFill="#cd1616" />
+      <Text layoutX="35.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Store name : ">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text layoutX="46.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
+      <Text layoutX="42.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password : ">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="usernameInput" layoutX="134.0" layoutY="151.0" />
-      <PasswordField fx:id="passwordInput" layoutX="134.0" layoutY="213.0" />
+      <TextField fx:id="usernameInput" layoutX="134.0" layoutY="199.0" />
+      <PasswordField fx:id="passwordInput" layoutX="134.0" layoutY="239.0" />
+      <Text layoutX="33.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Security Check">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

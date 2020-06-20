@@ -188,14 +188,6 @@ public class ViewProductController {
                         final Button add = new Button("Add");
 
                         add.setOnAction(event ->{
-                            /*
-                            if((!sizeselector.equals("S") && !sizeselector.equals("M") && !sizeselector.equals("L") && !sizeselector.equals("XL")) && (quant==0))
-                            {
-                                JOptionPane.showMessageDialog(null, "No size and quantity selected !");
-                                return;
-                            }
-
-                             */
                             if(quant==0)
                             {
                                 JOptionPane.showMessageDialog(null, "No quantity selected !");
@@ -293,6 +285,7 @@ public class ViewProductController {
                             productsOrd.clear();
                             productscounter=0;
                             productsincart.setText(String.valueOf(productscounter));
+                            JOptionPane.showMessageDialog(null, "Order placed successfully !");
                         } catch (Exception e) {
                             JOptionPane.showMessageDialog(null, e.getMessage());
                             productsOrd.clear();
@@ -324,9 +317,6 @@ public class ViewProductController {
             shopnameInput.clear();
             passwordInput.clear();
             usernameInput.clear();
-
-
-        JOptionPane.showMessageDialog(null, "Order placed successfully !");
 
         }
 

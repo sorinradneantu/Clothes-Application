@@ -32,6 +32,6 @@
       </Button>
       <TextField fx:id="usernameInput" layoutX="107.0" layoutY="148.0" promptText="example:user1234" />
       <PasswordField fx:id="passwordInput" layoutX="107.0" layoutY="214.0" promptText="A-Z,0-9 and special chars" />
-      <Text fx:id="registerMessage" layoutX="147.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="registerMessage" layoutX="66.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="258.39999999999986" />
    </children>
 </AnchorPane>

@@ -12,16 +12,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import model.Order;
 import model.OrderStatus;
-import model.Product;
-import model.User;
 import services.FileSystemService;
 import services.StoreService;
-import services.UserService;
-
-
-import javax.swing.*;
+import javafx.scene.control.TableView;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;

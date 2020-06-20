@@ -33,8 +33,6 @@ public class StoreController {
     @FXML
     private TableColumn<Product,Double> price;
     @FXML
-    private TableColumn<Product, Button> actions;
-    @FXML
     private TextField filterField;
     public static void openStorePanel(Path pth) throws IOException {
         //load data from file with store name
@@ -54,7 +52,6 @@ public class StoreController {
     public void initialize(){
         name.setCellValueFactory(new PropertyValueFactory<>("Name"));
         price.setCellValueFactory(new PropertyValueFactory<>("Price"));
-        actions.setCellValueFactory(new PropertyValueFactory<>("Actions"));
         for(Product prod:products){
             prodList.add(prod);
         }
