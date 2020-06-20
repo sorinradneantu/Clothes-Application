@@ -9,6 +9,7 @@ import exceptions.CouldNotWriteOrderException;
 import exceptions.CouldNotWriteUsersException;
 import exceptions.UsernameAlreadyExistsException;
 import model.Order;
+import model.OrderStatus;
 import model.ProductToOrder;
 import model.User;
 import org.apache.commons.io.FileUtils;
@@ -32,8 +33,10 @@ public class UserService {
 
     private static List<Order> orders;
     private static List<User> users;
+    private static List<OrderStatus>stats;
     private static final Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
     private static final Path ORDERS_PATH=FileSystemService.getPathToFile("config","orders.json");
+    private static final Path STATUS_PATH=FileSystemService.getPathToFile("config","status.json");
 
     public static void loadUsersFromFile() throws IOException,UsernameAlreadyExistsException {
 
@@ -43,6 +46,9 @@ public class UserService {
         if (!Files.exists(ORDERS_PATH)) {
             FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("orders.json"),ORDERS_PATH.toFile());
         }
+        if(!Files.exists(STATUS_PATH)){
+            FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("orders.json"),STATUS_PATH.toFile());
+        }
 
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -51,21 +57,41 @@ public class UserService {
         ObjectMapper objMap=new ObjectMapper();
         objMap.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
 
+        ObjectMapper obMap=new ObjectMapper();
+        obMap.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
+
         orders=objMap.readValue(ORDERS_PATH.toFile(),new TypeReference<List<Order>>(){
         });
 
         users = objectMapper.readValue(USERS_PATH.toFile(), new TypeReference<List<User>>() {
         });
+
+        stats=objectMapper.readValue(STATUS_PATH.toFile(),new TypeReference<List<OrderStatus>>(){
+        });
+
         if(users.size()==0)
         {
             UserService.addUser("Admin","Admin1234","Admin");
         }
     }
 
+    public static List<User> getUsers(){
+        return users;
+    }
+    public static List<Order> getOrders() { return orders;}
+    public static List<OrderStatus> getStats(){return stats;}
+
 
 
     public static void addOrder(String shopname, String customername, ArrayList<ProductToOrder> productsOrd) {
         orders.add(new Order(shopname, customername, productsOrd));
+       stats.add(new OrderStatus(new Order(shopname, customername, productsOrd),"Pending"));
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(STATUS_PATH.toFile(),stats);
+        } catch (IOException e) {
+            throw new CouldNotWriteOrderException();
+        }
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(ORDERS_PATH.toFile(), orders);
@@ -73,14 +99,7 @@ public class UserService {
             throw new CouldNotWriteOrderException();
         }
 
-
-
-
     }
-    public static List<User> getUsers(){
-        return users;
-    }
-    public static List<Order> getOrders() { return orders;}
 
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);

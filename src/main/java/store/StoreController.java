@@ -90,5 +90,8 @@ public class StoreController {
     public void editProd()throws IOException{
         EditProductController.EditProdPanel();
     }
+    public void viewStoreOrder()throws IOException{
+        StoreOrdersController.viewOrdersPanel();
+    }
 
 }

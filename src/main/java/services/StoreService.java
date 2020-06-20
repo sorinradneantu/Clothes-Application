@@ -5,13 +5,13 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.webkit.dom.DocumentImpl;
 import exceptions.*;
-import model.Product;
-import model.User;
+import model.*;
 
 import javax.swing.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -23,6 +23,15 @@ public class StoreService {
     public static void loadUsers() throws IOException,UsernameAlreadyExistsException {
        users=UserService.getUsers();
     }
+    public static List<OrderStatus> loadStatusFromFile(Path DATA_PATH) throws IOException {
+        List<OrderStatus> stats;
+        ObjectMapper objMap = new ObjectMapper();
+        objMap.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
+        stats = objMap.readValue(DATA_PATH.toFile(), new TypeReference<List<OrderStatus>>() {
+        });
+        return stats;
+    }
+
     public static List<Product> loadDataFromFile(Path DATA_PATH) throws IOException {
         List<Product> products;
         ObjectMapper objMap = new ObjectMapper();
@@ -105,6 +114,7 @@ public class StoreService {
             }
         }
     }
+
     public static void editData(String curentNameInput,String newNameInput,String  newPriceInput,String usernameInput, String passwordInput) throws IOException, ProductAlreadyExistsException, ProductDoesNotExist {
         Path pth;
         int i = 0;
@@ -147,6 +157,47 @@ public class StoreService {
         if(i==products.size()){
             throw new ProductDoesNotExist(name);
         }
+    }
+    public static void addOrdStatus(OrderStatus o) throws IOException {
+        Path pth;
+        pth = FileSystemService.getPathToFile("config",  "status.json");
+        List<OrderStatus> stats;
+        stats = loadStatusFromFile(pth);
+        stats.add(o);
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(pth.toFile(),stats);
+        } catch (IOException e) {
+            throw new CouldNotWriteOrderException();
+        }
+    }
+    public static void deleteStatus(String shopname, String customername, ArrayList<ProductToOrder> productsOrd ) throws IOException {
+        Path pth;
+        List<OrderStatus> stats;
+        pth = FileSystemService.getPathToFile("config", "status.json");
+        stats = loadStatusFromFile(pth);
+       for (Iterator<OrderStatus> iter = stats.listIterator(); iter.hasNext(); ) {
+            OrderStatus a = iter.next();
+            if (Objects.equals(shopname,a.getO().getShopname())) {
+                if(Objects.equals(a.getO().getCustomername(),customername)){
+                    if(Objects.equals(a.getO().getProductsOrd(),productsOrd)) {
+                        iter.remove();
+                    }
+                }
+            }
+        }
+        try {
+            FileWriter fwrite = new FileWriter(String.valueOf(pth));
+            fwrite.write("[]");
+            fwrite.close();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null,"An error occurre");
+            e.printStackTrace();
+        }
+      for(OrderStatus os:stats) {
+          StoreService.addOrdStatus(os);
+       }
+
     }
 
 }
