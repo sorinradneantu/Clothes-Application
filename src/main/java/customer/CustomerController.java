@@ -16,6 +16,7 @@ import javafx.util.Callback;
 import model.User;
 import services.FileSystemService;
 import services.UserService;
+import store.EditProductController;
 
 import java.util.List;
 import java.io.IOException;
@@ -46,6 +47,10 @@ public class CustomerController {
         window.setScene(customerScene);
         window.setTitle("Customer Panel");
         window.show();
+    }
+
+    public void viewOrderHistory() throws IOException {
+        ViewPastOrdersController.viewPastOrdersPanel();
     }
 
     public void initialize(){

@@ -100,7 +100,6 @@ public class StoreOrdersController {
                                 StoreService.addOrdStatus(temp);
                             } catch (IOException e) {
                             }
-                            ordSt.refresh();
                         });
 
                         setGraphic(selectStatus);

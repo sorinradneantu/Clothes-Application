@@ -23,7 +23,7 @@
          </font>
       </Label>
       <Pane prefHeight="625.0" prefWidth="11.0" style="-fx-background-color: #993399;" />
-      <Button layoutX="270.0" layoutY="70.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" text="View past orders" textFill="#cd1616" />
+      <Button onAction="#viewOrderHistory" layoutX="270.0" layoutY="70.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" text="View past orders" textFill="#cd1616" />
       <TextField fx:id="filterField" layoutX="42.0" layoutY="71.0" promptText="Search ..." />
    </children>
 </AnchorPane>
