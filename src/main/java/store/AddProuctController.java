@@ -36,9 +36,16 @@ public class AddProuctController {
     public void addNewProd() throws ProductAlreadyExistsException, IOException {
     try {
         StoreService.addData(nameInput.getText(), priceInput.getText(), usernameInput.getText(), passwordInput.getText());
-       // JOptionPane.showMessageDialog(null, "Product added successfully");
+        nameInput.clear();
+        passwordInput.clear();
+        priceInput.clear();
+        usernameInput.clear();
     }catch(ProductAlreadyExistsException e){
         JOptionPane.showMessageDialog(null, e.getMessage());
+        nameInput.clear();
+        passwordInput.clear();
+        priceInput.clear();
+        usernameInput.clear();
     }
     }
 }

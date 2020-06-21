@@ -22,7 +22,7 @@
             </columns>
         </TableView>
         <Pane prefHeight="679.0" prefWidth="11.0" style="-fx-background-color: #993399;" />
-        <Button layoutX="130.0" layoutY="606.0" mnemonicParsing="false" onAction="#placeNewOrder" prefHeight="58.0" prefWidth="127.0" text="Place order" textFill="#cd1616">
+        <Button layoutX="159.0" layoutY="606.0" mnemonicParsing="false" onAction="#placeNewOrder" prefHeight="58.0" prefWidth="127.0" text="Place order" textFill="#cd1616">
             <font>
                 <Font size="17.0" />
             </font>

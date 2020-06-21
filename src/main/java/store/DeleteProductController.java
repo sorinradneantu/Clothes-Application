@@ -36,8 +36,14 @@ public class DeleteProductController {
     public void deleteProd()throws IOException, ProductDoesNotExist , ProductAlreadyExistsException {
     try {
         StoreService.deleteData(productInput.getText(),usernameInput.getText(),passwordInput.getText());
+        productInput.clear();
+        passwordInput.clear();
+        usernameInput.clear();
     }catch (ProductDoesNotExist e){
         JOptionPane.showMessageDialog(null, e.getMessage());
+        productInput.clear();
+        passwordInput.clear();
+        usernameInput.clear();
     }
     }
 }

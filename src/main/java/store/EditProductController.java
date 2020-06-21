@@ -38,8 +38,18 @@ public class EditProductController {
     public void editProduct()throws IOException, ProductAlreadyExistsException {
         try {
             StoreService.editData(curentNameInput.getText(), newNameInput.getText(), newPriceInput.getText(), usernameInput.getText(), passwordInput.getText());
+            curentNameInput.clear();
+            newNameInput.clear();
+            newPriceInput.clear();
+            usernameInput.clear();
+            passwordInput.clear();
         }catch (ProductAlreadyExistsException | ProductDoesNotExist e){
             JOptionPane.showMessageDialog(null, e.getMessage());
+            curentNameInput.clear();
+            newNameInput.clear();
+            newPriceInput.clear();
+            usernameInput.clear();
+            passwordInput.clear();
         }
     }
 }
