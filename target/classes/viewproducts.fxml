@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="679.0" prefWidth="446.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="customer.ViewProductController">
+    <children>
+        <TableView fx:id="tableview" layoutX="29.0" layoutY="53.0" prefHeight="343.0" prefWidth="402.0">
+            <columns>
+                <TableColumn fx:id="name" prefWidth="125.5999755859375" text="Name" />
+                <TableColumn fx:id="price" minWidth="0.0" prefWidth="67.99993896484375" text="Price" />
+                <TableColumn fx:id="size" minWidth="0.0" prefWidth="60.0" text="Size" />
+                <TableColumn fx:id="quantity" minWidth="5.60003662109375" prefWidth="85.5999755859375" text="Quantity" />
+            <TableColumn fx:id="add" prefWidth="67.20001220703125" text="Add" />
+            </columns>
+        </TableView>
+        <Pane prefHeight="679.0" prefWidth="11.0" style="-fx-background-color: #993399;" />
+        <Button layoutX="159.0" layoutY="606.0" mnemonicParsing="false" onAction="#placeNewOrder" prefHeight="58.0" prefWidth="127.0" text="Place order" textFill="#cd1616">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </Button>
+        <TextField fx:id="filterField" layoutX="29.0" layoutY="21.0" promptText="Search ..." />
+      <Text layoutX="41.0" layoutY="502.0" strokeType="OUTSIDE" strokeWidth="0.0" text="username :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="39.0" layoutY="538.0" strokeType="OUTSIDE" strokeWidth="0.0" text="password : ">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="40.0" layoutY="578.0" strokeType="OUTSIDE" strokeWidth="0.0" text="shop's name :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="usernameInput" layoutX="168.0" layoutY="482.0" />
+      <TextField fx:id="shopnameInput" layoutX="168.0" layoutY="558.0" />
+      <PasswordField fx:id="passwordInput" layoutX="168.0" layoutY="520.0" />
+      <Text layoutX="39.0" layoutY="467.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Security Check :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="40.0" layoutY="435.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You have ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="146.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" text="products added in your cart !">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="productsincart" layoutX="105.0" layoutY="418.0" prefHeight="26.0" prefWidth="38.0" />
+    </children>
+</AnchorPane>

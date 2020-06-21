@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="store.StoreOrdersController">
+   <children>
+      <TableView fx:id="ordSt" layoutX="21.0" layoutY="71.0" prefHeight="315.0" prefWidth="478.0">
+        <columns>
+          <TableColumn fx:id="order" prefWidth="365.5999755859375" text="Order" />
+          <TableColumn fx:id="accRej" prefWidth="111.19997558593752" text="Accept/Reject" />
+        </columns>
+      </TableView>
+      <AnchorPane layoutX="-4.0" prefHeight="493.0" prefWidth="10.0" style="-fx-background-color: #993399;" />
+      <TextField fx:id="filterField" layoutX="33.0" layoutY="27.0" prefHeight="26.0" prefWidth="219.0" promptText="Search ..." />
+   </children>
+</AnchorPane>

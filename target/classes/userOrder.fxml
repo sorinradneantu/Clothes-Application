@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="454.0" prefWidth="471.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="customer.ViewPastOrdersController">
+   <children>
+      <TableView fx:id="tableview" layoutX="37.0" layoutY="118.0" prefHeight="312.0" prefWidth="397.0">
+        <columns>
+          <TableColumn fx:id="orders" prefWidth="396.80002365112307" text="Orders" />
+        </columns>
+      </TableView>
+      <BorderPane prefHeight="454.0" prefWidth="10.0" style="-fx-background-color: #993399;" />
+      <TextField fx:id="filterField" layoutX="37.0" layoutY="69.0" promptText="Search ..." />
+      <Text layoutX="37.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orders history">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="625.0" prefWidth="453.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="customer.CustomerController">
+   <children>
+      <TableView fx:id="tableview" layoutX="29.0" layoutY="128.0" prefHeight="452.0" prefWidth="391.0">
+        <columns>
+          <TableColumn fx:id="username" prefWidth="198.39995765686035" text="Name" />
+          <TableColumn fx:id="viewproducts" prefWidth="192.0" text="Action" />
+        </columns>
+      </TableView>
+      <Label layoutX="29.0" layoutY="14.0" prefHeight="35.0" prefWidth="350.0" text="Select a store and start shopping !">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Pane prefHeight="625.0" prefWidth="11.0" style="-fx-background-color: #993399;" />
+      <Button onAction="#viewOrderHistory" layoutX="270.0" layoutY="70.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" text="View past orders" textFill="#cd1616" />
+      <TextField fx:id="filterField" layoutX="42.0" layoutY="71.0" promptText="Search ..." />
+   </children>
+</AnchorPane>
