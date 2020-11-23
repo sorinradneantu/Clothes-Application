@@ -9,7 +9,7 @@ public class Order {
     private String customername;
     private ArrayList<ProductToOrder> productsOrd ;
 
-    public Order()
+    public  Order()
     {
 
     }
